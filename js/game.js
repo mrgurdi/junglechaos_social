@@ -223,7 +223,7 @@ var Game = Class.$extend({
 		menu.addLabel("Score : "+score,168,128+64,"#eeffd7");
 		//menu.addButton(this.Resources.closeBtn,128,128+64,this,this.menuScreen);
 		menu.addButton(this.Resources.closeBtn,128,128+64+64,this,function(){location.reload();});
-
+		if(FB_ME){
 			FB.ui(
 			  {
 			   method: 'feed',
@@ -243,6 +243,7 @@ var Game = Class.$extend({
 			    }
 			  }
 			);
+		}
 
 	},
 
@@ -263,6 +264,7 @@ var Game = Class.$extend({
 		//menu.addButton(this.Resources.closeBtn,128,128+64,this,this.menuScreen);
 		menu.addButton(this.Resources.closeBtn,128,128+64+64,this,function(){location.reload();});
 
+		if(FB_ME && FB_Remote){
 		FB.ui(
 		  {
 		   method: 'feed',
@@ -282,6 +284,7 @@ var Game = Class.$extend({
 		    }
 		  }
 		);
+		}
 	},
 
 	startMultiplayer: function(){
