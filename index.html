@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>Jungle Chaos on Facebook</title>
+		<script type="text/javascript" src="js/lib/easeljs-0.6.0.min.js"></script>
+		<script type="text/javascript" src="js/lib/classy.js"></script>
+		<script type="text/javascript" src="js/lib/AppWarpClientSDK.js"></script>
+		<script type="text/javascript" src="js/lib/pubsub.js"></script>
+
+		<script type="text/javascript" src="js/appwarp.js"></script>
+		<script type="text/javascript" src="js/loader.js"></script>
+		<script type="text/javascript" src="js/background.js"></script>
+		<script type="text/javascript" src="js/controls.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/block.js"></script>
+		<script type="text/javascript" src="js/world.js"></script>
+		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</head>
+	<style type="text/css">
+		body{
+			padding: 0px;
+			margin: 0px;
+		}
+
+		#container{
+			background-image: url("art/bg.png");
+			background-repeat: repeat;
+			background-position: bottom;
+			min-height: 480px;
+		}
+	</style>
+	<body align="center">
+		<div id="fb-root"></div>
+		<script>
+		  // Additional JS functions here
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '126142857571141', // App ID
+		      //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+		      status     : true, // check login status
+		      cookie     : true, // enable cookies to allow the server to access the session
+		      xfbml      : true  // parse XFBML
+		    });
+
+		    // Additional init code here
+
+		    	FB.getLoginStatus(function(response) {
+					  if (response.status === 'connected') {
+					    // connected
+					    $("#container").hide();
+					    main();
+					  } 
+					  else{
+					  	$("#letsbegin").show();
+					  }
+				});
+
+			$("#letsbegin").click(function(){
+				$(document).ready(function(){
+			  	function login() {
+				    FB.login(function(response) {
+				        if (response.authResponse) {
+				            // connected
+				            $("#container").hide();
+				            main();
+				        } else {
+				            // cancelled
+				        }
+				    });
+				}
+
+				FB.getLoginStatus(function(response) {
+					  if (response.status === 'connected') {
+					    // connected
+					    $("#container").hide();
+					    main();
+					  } else if (response.status === 'not_authorized') {
+					    // not_authorized
+					    login();
+					  } else {
+					    // not_logged_in
+					    login();
+					  }
+				});
+			});
+
+		  });
+
+		  };
+
+		  // Load the SDK Asynchronously
+		  (function(d){
+		     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement('script'); js.id = id; js.async = true;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     ref.parentNode.insertBefore(js, ref);
+		   }(document));
+
+		  $(document).ready(function(){
+		  	$("#letsbegin").hide();
+		  });
+		</script>
+
+		<div>
+			<div id="container" align="center">
+				<br /><br />
+				<img src="art/title.png"/><br /><br /><br />
+				<input type="button" id="letsbegin" value="Login with Facebook" />
+			</div>
+		</div>
+	</body>
+</html>
