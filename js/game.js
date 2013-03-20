@@ -6,6 +6,8 @@ var roomId = "2099640152";
 var score, multiplier=1;
 var FB_ME, FB_Remote;
 var FB_ME_pic, FB_Remote_pic;
+var FB_UI_link = 'http://apps.facebook.com/junglechaos';//https://developers.facebook.com/docs/reference/javascript/';
+var FB_UI_pic = 'http://appwarp.shephertz.com/junglechaos_social/art/face1.png';//http://www.fbrell.com/public/f8.jpg';
 
 var Game = Class.$extend({
 	Debug: true,
@@ -223,7 +225,7 @@ var Game = Class.$extend({
 		menu.addLabel("Score : "+score,168,128+64,"#eeffd7");
 		//menu.addButton(this.Resources.closeBtn,128,128+64,this,this.menuScreen);
 		menu.addButton(this.Resources.closeBtn,128,128+64+64,this,function(){location.reload();});
-		if(FB_ME){
+
 			FB.ui(
 			  {
 			   method: 'feed',
@@ -232,8 +234,8 @@ var Game = Class.$extend({
 			   description: (
 			      FB_ME.name+' made a score of '+score
 			   ),
-			   link: 'https://developers.facebook.com/docs/reference/javascript/',
-			   picture: 'http://www.fbrell.com/public/f8.jpg'
+			   link: FB_UI_link,
+			   picture: FB_UI_pic
 			  },
 			  function(response) {
 			    if (response && response.post_id) {
@@ -243,7 +245,6 @@ var Game = Class.$extend({
 			    }
 			  }
 			);
-		}
 
 	},
 
@@ -264,7 +265,6 @@ var Game = Class.$extend({
 		//menu.addButton(this.Resources.closeBtn,128,128+64,this,this.menuScreen);
 		menu.addButton(this.Resources.closeBtn,128,128+64+64,this,function(){location.reload();});
 
-		if(FB_ME && FB_Remote){
 		FB.ui(
 		  {
 		   method: 'feed',
@@ -273,8 +273,8 @@ var Game = Class.$extend({
 		   description: (
 		      FB_ME.name+' defeated ' + FB_Remote.name + ' with a score of '+score
 		   ),
-		   link: 'https://developers.facebook.com/docs/reference/javascript/',
-		   picture: 'http://www.fbrell.com/public/f8.jpg'
+		   link: FB_UI_link,
+		   picture: FB_UI_pic
 		  },
 		  function(response) {
 		    if (response && response.post_id) {
@@ -284,7 +284,6 @@ var Game = Class.$extend({
 		    }
 		  }
 		);
-		}
 	},
 
 	startMultiplayer: function(){
