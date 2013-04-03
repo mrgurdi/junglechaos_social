@@ -114,6 +114,61 @@ var Game = Class.$extend({
 		btn = new Button(this.Stage,this.Resources.trophy,this.Width-96,this.Height-96,this,this.showscores);
 	},
 
+	showFriendScores: function(){
+		this.log("FriendsScoreBoard");
+		$("#scoreboard").show();
+		$("#scoreboard #scores").html("Please Wait loading...");
+		var winH = $(window).height(), winW = $(window).width();
+		$("#scoreboard").css('top', winH / 2 - $("#scoreboard").height() / 2);
+		$("#scoreboard").css('left', winW / 2 - $("#scoreboard").width() / 2);
+
+		//that = this;
+
+			function getFBName(id,func){
+				FB.api("/"+id,function(response){
+					func(id,response.name);
+				});
+			}
+
+			function getFBPic(id, func){
+				FB.api("/"+id+"/picture",function(response){
+					func(id,response.data.url)
+				});
+			}
+
+			function update_score(name,pic,score,i){
+				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
+				$("#scoreboard #scores").append(score_html);
+
+				getScore(i+1);
+			}
+
+			function getScore(i){
+				if(i < friends.length){
+					getHeighestScore(friends[i].id, function(obj){
+						objson = JSON.parse(obj);
+						score = objson.app42.response.games.game.scores.score.value;
+						name = friends[i].name;
+						getFBPic(friends[i].id, function(id_,pic){
+							update_score(name,pic,score,i);
+						});
+						console.log(friends[i]);
+						console.log(objson);
+					}, function(){
+						getScore(i+1);
+					});
+				}
+			}
+
+		var friends;
+		FB.api("/me/friends",function(response){
+			friends = response.data;
+			getScore(0);
+		});
+
+			$("#scoreboard #scores").html("");
+	},
+
 	showscores: function(){
 		this.log("ScoreBoard");
 		$("#scoreboard").show();

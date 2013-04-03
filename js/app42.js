@@ -25,12 +25,26 @@ function saveScore(name, score){
 }
 
 function getTopRankings(func){
-	score_board.getTopRankings("JungleChaos",{
+	score_board.getTopNRankings("JungleChaos",10,{
 		success: function(obj){
 			func(obj);
 		},
 		error: function(obj){
 			console.log("Error retrieving scores");
+		}
+	});
+}
+
+function getHeighestScore(user, func,func2){
+	score_board.getHighestScoreByUser("JungleChaos",user,{
+		success: function(obj){
+			func(obj);
+		},
+		error: function(obj){
+			//console.log("Error retrieving score");
+			if(func2){
+				func2();
+			}
 		}
 	});
 }
