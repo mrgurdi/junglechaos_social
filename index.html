@@ -3,9 +3,11 @@
 		<title>Jungle Chaos on Facebook</title>
 		<script type="text/javascript" src="js/lib/easeljs-0.6.0.min.js"></script>
 		<script type="text/javascript" src="js/lib/classy.js"></script>
+		<script type="text/javascript" src="js/lib/App42-all-0.6.0.min.js"></script>
 		<script type="text/javascript" src="js/lib/AppWarpClientSDK.js"></script>
 		<script type="text/javascript" src="js/lib/pubsub.js"></script>
 
+		<script type="text/javascript" src="js/app42.js"></script>
 		<script type="text/javascript" src="js/appwarp.js"></script>
 		<script type="text/javascript" src="js/loader.js"></script>
 		<script type="text/javascript" src="js/background.js"></script>
@@ -26,6 +28,38 @@
 			margin: 0px;
 		}
 
+		#scoreboard{
+			display: block;
+			position: fixed;
+			width: 400px;
+			height: 300px;
+			background-color: #D4D8DD;
+			overflow: scroll;
+			padding: 10px;
+			font-size: 14px;
+			color: #3C4756;
+		}
+
+		#scoreboard #scores {
+			text-align: left;
+		}
+
+		#scoreboard #header{
+			background-color: #3C4756;
+			padding: 10px;
+			font-size: 24px;
+			color: #D4D8DD;
+			margin-bottom: 4px;
+		}
+
+		#scoreboard #header a{
+			color: #BAC0C6;
+		}
+
+		#scoreboard #header a:hover{
+			color: #D4D8DD;
+		}
+
 		#container{
 			background-image: url("art/bg.png");
 			background-repeat: repeat;
@@ -39,7 +73,7 @@
 		  // Additional JS functions here
 		  window.fbAsyncInit = function() {
 		    FB.init({
-		      appId      : '126142857571141', // App ID
+		      appId      : '529653873751733', // App ID
 		      //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
 		      status     : true, // check login status
 		      cookie     : true, // enable cookies to allow the server to access the session
@@ -103,6 +137,10 @@
 
 		  $(document).ready(function(){
 		  	$("#letsbegin").hide();
+		  	$("#scoreboard").hide();
+		  	$("#score_close").click(function(){
+		  		$("#scoreboard").hide();
+		  	});
 		  });
 		</script>
 
@@ -111,6 +149,13 @@
 				<br /><br />
 				<img src="art/title.png"/><br /><br /><br />
 				<input type="button" id="letsbegin" value="Login with Facebook" />
+			</div>
+			<div id="scoreboard">
+				<div id="header">
+					ScoreBoard (<a id="score_close" href="#">Close</a>)
+				</div>
+				<div id="scores">
+				</div>
 			</div>
 		</div>
 	</body>

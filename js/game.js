@@ -1,8 +1,5 @@
 
 
-var apikey = "acad7bf43f3ffadb56cc941dffc4f88a7b6e9b99a12af538d4ce606c7eeb9740";
-var secretkey = "edc808e0ac69d0eca4bc6eb22d5c344f5ae61aafc1ef9cea03157d22c1274c2a";
-var roomId = "2099640152";
 var score, multiplier=1;
 var FB_ME, FB_Remote;
 var FB_ME_pic, FB_Remote_pic;
@@ -42,7 +39,8 @@ var Game = Class.$extend({
 			enemy: "art/enemy_snake.png",
 			monkey1: "art/monkey1.png",
 			monkey2: "art/monkey2.png",
-			credits: "art/credits.png"
+			credits: "art/credits.png",
+			trophy: "art/trophy.png"
 		};
 
 		this.loadResources();
@@ -113,10 +111,73 @@ var Game = Class.$extend({
 		menu.addButton(this.Resources.multiplayerBtn,128,128+64,this,this.startMultiplayer);
 		menu.addButton(this.Resources.helpBtn,128,128+64+64,this,this.helpScreen);
 		menu.addButton(this.Resources.creditsBtn,128,128+64+64+64,this,this.creditScreen);
+		btn = new Button(this.Stage,this.Resources.trophy,this.Width-96,this.Height-96,this,this.showscores);
+	},
 
-		
+	showscores: function(){
+		this.log("ScoreBoard");
+		$("#scoreboard").show();
+		$("#scoreboard #scores").html("Please Wait loading...");
+		var winH = $(window).height(), winW = $(window).width();
+		$("#scoreboard").css('top', winH / 2 - $("#scoreboard").height() / 2);
+		$("#scoreboard").css('left', winW / 2 - $("#scoreboard").width() / 2);
 
-		
+		//that = this;
+		getTopRankings(function(obj) {
+			objson = JSON.parse(obj);
+			//that.log(objson);
+			scores = objson.app42.response.games.game.scores.score;
+
+			function getFBName(id,func){
+				FB.api("/"+id,function(response){
+					func(id,response.name);
+				});
+			}
+
+			function getFBPic(id, func){
+				FB.api("/"+id+"/picture",function(response){
+					func(id,response.data.url)
+				});
+			}
+
+			function update_score(name,pic,score,i){
+				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
+				$("#scoreboard #scores").append(score_html);
+				
+				getScore(i+1);
+			}
+
+			function getScore(i){
+				if(i < scores.length){
+					var username = scores[i].userName;
+					var score =  scores[i].value;
+					getFBName(username, function(id,name){
+						getFBPic(id, function(id_,pic){
+							//that.log(name + " : " + pic + " => " + score);
+							update_score(name,pic,score,i);
+						});
+					});
+				}
+			}
+
+			$("#scoreboard #scores").html("");
+			/*for(i=0; i<scores.length; ++i){
+				//that.log(scores[i]);
+				var username = scores[i].userName;
+				var score =  scores[i].value;
+				that.log(i);
+				getFBName(username, function(id,name){
+					getFBPic(id, function(id_,pic){
+						//that.log(name + " : " + pic + " => " + score);
+						update_score(name,pic,score,i);
+					});
+				});
+				//score_html += scores[i].userName + " : " + scores[i].value + "<br>";
+			}*/
+
+			getScore(0);
+			
+		});
 	},
 
 	helpScreen: function(){
@@ -246,6 +307,7 @@ var Game = Class.$extend({
 			  }
 			);
 
+		saveScore(FB_ME.id,score);
 	},
 
 	win: function(){
@@ -284,6 +346,8 @@ var Game = Class.$extend({
 		    }
 		  }
 		);
+
+		saveScore(FB_ME.id,score);
 	},
 
 	startMultiplayer: function(){
@@ -412,7 +476,7 @@ var Game = Class.$extend({
 							jump: [2,2,"jump",4]
 						}
 					};
-					remote = new Player(that.world.Container,spritedata2,updt.X,updt.Y,92,112,res.sender);
+					remote = new Player(that.world.Container,spritedata2,updt.X,that.Height - updt.Y,92,112,res.sender);
 					remote.setAnimation("run");
 					remote.setVel(that.world.Speed,that.world.Speed);
 
@@ -436,7 +500,7 @@ var Game = Class.$extend({
 							jump: [2,2,"jump",4]
 						}
 					};
-					remote = new Player(that.world.Container,spritedata2,updt.X,updt.Y,92,112,res.sender);
+					remote = new Player(that.world.Container,spritedata2,updt.X,that.Height - updt.Y,92,112,res.sender);
 					remote.setAnimation("run");
 					remote.setVel(that.world.Speed,that.world.Speed);
 
@@ -458,7 +522,7 @@ var Game = Class.$extend({
 					remote = that.world.getPlayer(res.sender);
 					if(remote){
 						remote.Position.X = updt.X;
-						remote.Position.Y = updt.Y;
+						remote.Position.Y = that.Height - updt.Y;
 						remote.updtPos();
 						remote.Jump = -150;
 						//that.log(remote.ID+":"+remote.Position.X+"x"+remote.Position.Y);
@@ -580,7 +644,7 @@ var Game = Class.$extend({
 					AppWarp.sendMsg({
 						"MSG": "jump",
 						"X": that.player.Position.X,
-						"Y": that.player.Position.Y
+						"Y": that.Height - that.player.Position.Y
 					});
 				}
 			}
@@ -595,7 +659,7 @@ var Game = Class.$extend({
 		AppWarp.sendMsg({
 			"MSG": "begin",
 			"X": this.player.Position.X,
-			"Y": this.player.Position.Y,
+			"Y": this.Height - this.player.Position.Y,
 			"FB_ID": FB_ME.id
 		});
 	}
