@@ -60,6 +60,38 @@
 			color: #D4D8DD;
 		}
 
+		#scoreboardFrnds{
+			display: block;
+			position: fixed;
+			width: 400px;
+			height: 300px;
+			background-color: #D4D8DD;
+			overflow: scroll;
+			padding: 10px;
+			font-size: 14px;
+			color: #3C4756;
+		}
+
+		#scoreboardFrnds #scoresFrnds {
+			text-align: left;
+		}
+
+		#scoreboardFrnds #headerFrnds{
+			background-color: #3C4756;
+			padding: 10px;
+			font-size: 24px;
+			color: #D4D8DD;
+			margin-bottom: 4px;
+		}
+
+		#scoreboardFrnds #headerFrnds a{
+			color: #BAC0C6;
+		}
+
+		#scoreboardFrnds #headerFrnds a:hover{
+			color: #D4D8DD;
+		}
+
 		#container{
 			background-image: url("art/bg.png");
 			background-repeat: repeat;
@@ -141,6 +173,23 @@
 		  	$("#score_close").click(function(){
 		  		$("#scoreboard").hide();
 		  	});
+
+		  	$("#scoreboardFrnds").hide();
+		  	$("#score_closeFrnds").click(function(){
+		  		$("#scoreboardFrnds").hide();
+		  	});
+
+		  	$("#scoreFrnds").click(function(){
+		  		$("#scoreboard").hide();
+		  		$("#scoreboardFrnds").hide();
+		  		jungleChaos.showFriendScores();
+		  	});
+
+		  	$("#scoreAll").click(function(){
+		  		$("#scoreboard").hide();
+		  		$("#scoreboardFrnds").hide();
+		  		jungleChaos.showscores();
+		  	});
 		  });
 		</script>
 
@@ -152,9 +201,16 @@
 			</div>
 			<div id="scoreboard">
 				<div id="header" align="left">
-					ScoreBoard : (<a id="score_close" href="#">Close</a>)
+					ScoreBoard : (<a id="scoreFrnds" href="#">Friends</a> / <a id="score_close" href="#">Close</a>)
 				</div>
 				<div id="scores">
+				</div>
+			</div>
+			<div id="scoreboardFrnds">
+				<div id="headerFrnds" align="left">
+					ScoreBoard : (<a id="scoreAll" href="#">All</a> / <a id="score_closeFrnds" href="#">Close</a>)
+				</div>
+				<div id="scoresFrnds">
 				</div>
 			</div>
 		</div>

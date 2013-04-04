@@ -116,11 +116,11 @@ var Game = Class.$extend({
 
 	showFriendScores: function(){
 		this.log("FriendsScoreBoard");
-		$("#scoreboard").show();
-		$("#scoreboard #scores").html("Please Wait loading...");
+		$("#scoreboardFrnds").show();
+		$("#scoreboardFrnds #scoresFrnds").html("Please Wait loading...");
 		var winH = $(window).height(), winW = $(window).width();
-		$("#scoreboard").css('top', winH / 2 - $("#scoreboard").height() / 2);
-		$("#scoreboard").css('left', winW / 2 - $("#scoreboard").width() / 2);
+		$("#scoreboardFrnds").css('top', winH / 2 - $("#scoreboardFrnds").height() / 2);
+		$("#scoreboardFrnds").css('left', winW / 2 - $("#scoreboardFrnds").width() / 2);
 
 		//that = this;
 
@@ -138,7 +138,7 @@ var Game = Class.$extend({
 
 			function update_score(name,pic,score,i){
 				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
-				$("#scoreboard #scores").append(score_html);
+				$("#scoreboardFrnds #scoresFrnds").append(score_html);
 
 				getScore(i+1);
 			}
@@ -166,7 +166,7 @@ var Game = Class.$extend({
 			getScore(0);
 		});
 
-			$("#scoreboard #scores").html("");
+			$("#scoreboardFrnds #scoresFrnds").html("");
 	},
 
 	showscores: function(){
