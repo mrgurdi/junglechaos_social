@@ -40,7 +40,8 @@ var Game = Class.$extend({
 			monkey1: "art/monkey1.png",
 			monkey2: "art/monkey2.png",
 			credits: "art/credits.png",
-			trophy: "art/trophy.png"
+			trophy: "art/trophy.png",
+			fb_btn: "art/fb.png"
 		};
 
 		this.loadResources();
@@ -112,6 +113,13 @@ var Game = Class.$extend({
 		menu.addButton(this.Resources.helpBtn,128,128+64+64,this,this.helpScreen);
 		menu.addButton(this.Resources.creditsBtn,128,128+64+64+64,this,this.creditScreen);
 		btn = new Button(this.Stage,this.Resources.trophy,this.Width-96,this.Height-96,this,this.showscores);
+		btn2 = new Button(this.Stage,this.Resources.fb_btn,96,this.Height-96,this,this.invite);
+	},
+
+	invite: function(){
+		FB.ui({method: 'apprequests',
+          message: 'Jungle Chaos is a multiplier jump n run game'
+        });
 	},
 
 	showFriendScores: function(){
