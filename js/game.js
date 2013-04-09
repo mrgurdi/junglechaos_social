@@ -122,7 +122,7 @@ var Game = Class.$extend({
         });
 	},
 
-	showFriendScores: function(){
+	showFriendScores_old: function(){
 		this.log("FriendsScoreBoard");
 		$("#scoreboardFrnds").show();
 		$("#scoreboardFrnds #scoresFrnds").html("Please Wait loading...");
@@ -172,6 +172,65 @@ var Game = Class.$extend({
 		FB.api("/me/friends",function(response){
 			friends = response.data;
 			getScore(0);
+		});
+
+			$("#scoreboardFrnds #scoresFrnds").html("");
+	},
+
+	showFriendScores: function(){
+		this.log("FriendsScoreBoard");
+		$("#scoreboardFrnds").show();
+		$("#scoreboardFrnds #scoresFrnds").html("Please Wait loading...");
+		var winH = $(window).height(), winW = $(window).width();
+		$("#scoreboardFrnds").css('top', winH / 2 - $("#scoreboardFrnds").height() / 2);
+		$("#scoreboardFrnds").css('left', winW / 2 - $("#scoreboardFrnds").width() / 2);
+
+		//that = this;
+
+			function getFBName(id,func){
+				FB.api("/"+id,function(response){
+					func(id,response.name);
+				});
+			}
+
+			function getFBPic(id, func){
+				FB.api("/"+id+"/picture",function(response){
+					func(id,response.data.url)
+				});
+			}
+
+			function update_score(name,pic,score,i){
+				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
+				$("#scoreboardFrnds #scoresFrnds").append(score_html);
+
+				getScore(i+1);
+			}
+
+			function getScore(i){
+				if(i < scores.length){
+					var username = scores[i].userName;
+					var score =  scores[i].value;
+					getFBName(username, function(id,name){
+						getFBPic(id, function(id_,pic){
+							//that.log(name + " : " + pic + " => " + score);
+							update_score(name,pic,score,i);
+						});
+					});
+				}
+			}
+
+		var friends;
+		var frnd_arr = new Array();
+		FB.api("/me/friends",function(response){
+			friends = response.data;
+			for(i=0; i<friends.length; ++i){
+				frnd_arr[i] = friends[i].id;
+			}
+			getTopRankingsFriends(frnd_arr, function(obj){
+				var objson = JSON.parse(obj);
+				scores = objson.app42.response.games.game.scores.score;
+				getScore(0);
+			});
 		});
 
 			$("#scoreboardFrnds #scoresFrnds").html("");

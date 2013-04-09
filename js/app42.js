@@ -14,7 +14,7 @@ console.log("Initialized App42 SDK");
 function saveScore(name, score){
 	score_board.saveUserScore("JungleChaos",name,score,{
 		success: function(obj){
-			//console.log("success");
+			console.log("scored saved");
 			//console.log(obj);
 		},
 		error: function(obj){
@@ -26,6 +26,17 @@ function saveScore(name, score){
 
 function getTopRankings(func){
 	score_board.getTopNRankings("JungleChaos",10,{
+		success: function(obj){
+			func(obj);
+		},
+		error: function(obj){
+			console.log("Error retrieving scores");
+		}
+	});
+}
+
+function getTopRankingsFriends(list,func){
+	score_board.getTopRankingsByGroup("JungleChaos",list,{
 		success: function(obj){
 			func(obj);
 		},
