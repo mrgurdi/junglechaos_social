@@ -122,7 +122,7 @@ var Game = Class.$extend({
         });
 	},
 
-	showFriendScores_old: function(){
+	/*showFriendScores_old: function(){
 		this.log("FriendsScoreBoard");
 		$("#scoreboardFrnds").show();
 		$("#scoreboardFrnds #scoresFrnds").html("Please Wait loading...");
@@ -175,7 +175,7 @@ var Game = Class.$extend({
 		});
 
 			$("#scoreboardFrnds #scoresFrnds").html("");
-	},
+	},*/
 
 	showFriendScores: function(){
 		this.log("FriendsScoreBoard");

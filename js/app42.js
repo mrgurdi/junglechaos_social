@@ -15,10 +15,8 @@ function saveScore(name, score){
 	score_board.saveUserScore("JungleChaos",name,score,{
 		success: function(obj){
 			console.log("scored saved");
-			//console.log(obj);
 		},
 		error: function(obj){
-			//console.log(obj);
 			console.log("Error saving scores");
 		}
 	});
@@ -52,7 +50,7 @@ function getHeighestScore(user, func,func2){
 			func(obj);
 		},
 		error: function(obj){
-			//console.log("Error retrieving score");
+			console.log("Error retrieving score");
 			if(func2){
 				func2();
 			}
