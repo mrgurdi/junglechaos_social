@@ -34,7 +34,7 @@ function getTopRankings(func){
 }
 
 function getTopRankingsFriends(list,func){
-	score_board.getTopRankingsByGroup("JungleChaos",list,{
+	score_board.getTopNRankersByGroup("JungleChaos",list,{
 		success: function(obj){
 			func(obj);
 		},

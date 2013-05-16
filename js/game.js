@@ -200,7 +200,7 @@ var Game = Class.$extend({
 			}
 
 			function update_score(name,pic,score,i){
-				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
+				score_html = '<div class="score" style="display:block; height: 50px;"><img style="float:left; padding-right: 10px;" align="middle" src="'+pic+'">'+ name + '<br>Score : <i>' + score + '</i></div>';
 				$("#scoreboardFrnds #scoresFrnds").append(score_html);
 
 				getScore(i+1);
@@ -226,6 +226,7 @@ var Game = Class.$extend({
 			for(i=0; i<friends.length; ++i){
 				frnd_arr[i] = friends[i].id;
 			}
+			frnd_arr[i] = FB_ME.id;
 			getTopRankingsFriends(frnd_arr, function(obj){
 				var objson = JSON.parse(obj);
 				scores = objson.app42.response.games.game.scores.score;
@@ -263,7 +264,7 @@ var Game = Class.$extend({
 			}
 
 			function update_score(name,pic,score,i){
-				score_html = '<div style="display:block; height: 64px;"><img style="float:right" src="'+pic+'"><b>'+ name + '</b><br>Score : <i>' + score + '</i></div>';
+				score_html = '<div class="score" style="display:block; height: 50px;"><img style="float:left; padding-right: 10px;" align="middle" src="'+pic+'">'+ name + '<br>Score : <i>' + score + '</i></div>';
 				$("#scoreboard #scores").append(score_html);
 				
 				getScore(i+1);

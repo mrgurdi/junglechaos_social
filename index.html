@@ -20,12 +20,14 @@
 
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
+		<link href='http://fonts.googleapis.com/css?family=Mouse+Memoirs' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	</head>
 	<style type="text/css">
 		body{
 			padding: 0px;
 			margin: 0px;
+			font-family: 'Mouse Memoirs', sans-serif;
 		}
 
 		#scoreboard{
@@ -33,31 +35,45 @@
 			position: fixed;
 			width: 400px;
 			height: 300px;
-			background-color: #D4D8DD;
+			background-color: rgb(115,185,68);
 			overflow: scroll;
-			padding: 10px;
-			font-size: 14px;
+			padding: 1px;
+			font-size: 20px;
 			color: #3C4756;
+			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 
 		#scoreboard #scores {
 			text-align: left;
 		}
 
+		#scoreboard #scores .score{
+			border-bottom-color: rgb(95,162,50);
+			border-top-color: rgb(144,199,106);
+			border-bottom-width: 2px;
+			border-top-width: 2px;
+			border-style: solid;
+			border-right-width: 0px;
+			border-left-width: 0px;
+			padding: 2px;
+			color: rgb(196,255,156);
+		}
+
 		#scoreboard #header{
-			background-color: #3C4756;
+			background-color: rgb(17,30,9);
 			padding: 10px;
 			font-size: 24px;
-			color: #D4D8DD;
+			color: rgb(196,255,156);
 			margin-bottom: 4px;
 		}
 
 		#scoreboard #header a{
-			color: #BAC0C6;
+			color: rgb(196,255,156);
 		}
 
 		#scoreboard #header a:hover{
-			color: #D4D8DD;
+			color: rgb(144,199,106);
 		}
 
 		#scoreboardFrnds{
@@ -65,31 +81,45 @@
 			position: fixed;
 			width: 400px;
 			height: 300px;
-			background-color: #D4D8DD;
+			background-color: rgb(115,185,68);
 			overflow: scroll;
-			padding: 10px;
-			font-size: 14px;
+			padding: 1px;
+			font-size: 20px;
 			color: #3C4756;
+			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 
 		#scoreboardFrnds #scoresFrnds {
 			text-align: left;
 		}
 
+		#scoreboardFrnds #scoresFrnds .score{
+			border-bottom-color: rgb(95,162,50);
+			border-top-color: rgb(144,199,106);
+			border-bottom-width: 2px;
+			border-top-width: 2px;
+			border-style: solid;
+			border-right-width: 0px;
+			border-left-width: 0px;
+			padding: 2px;
+			color: rgb(196,255,156);
+		}
+
 		#scoreboardFrnds #headerFrnds{
-			background-color: #3C4756;
+			background-color: rgb(17,30,9);
 			padding: 10px;
 			font-size: 24px;
-			color: #D4D8DD;
+			color: rgb(196,255,156);
 			margin-bottom: 4px;
 		}
 
 		#scoreboardFrnds #headerFrnds a{
-			color: #BAC0C6;
+			color: rgb(196,255,156);
 		}
 
 		#scoreboardFrnds #headerFrnds a:hover{
-			color: #D4D8DD;
+			color: rgb(144,199,106);
 		}
 
 		#container{
@@ -105,7 +135,7 @@
 		  // Additional JS functions here
 		  window.fbAsyncInit = function() {
 		    FB.init({
-		      appId      : '126142857571141', // App ID
+		      appId      : '529653873751733', // App ID
 		      //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
 		      status     : true, // check login status
 		      cookie     : true, // enable cookies to allow the server to access the session
