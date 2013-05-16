@@ -1,7 +1,7 @@
 
-var apikey = "acad7bf43f3ffadb56cc941dffc4f88a7b6e9b99a12af538d4ce606c7eeb9740";
-var secretkey = "edc808e0ac69d0eca4bc6eb22d5c344f5ae61aafc1ef9cea03157d22c1274c2a";
-var roomId = "2099640152";
+var apikey = "fbd431f895520939f504b7a527d3f414eaa8ad961df204df595ac1a4a0726894";
+var secretkey = "e67120470e6e963bed83c601687df4731dbd923abaeac7e6766b950a64f96b6b";
+var roomId = "1275685535";
 
 var a42 = "7ac8c9b71d986dcae9c565d412bf013352aeba7a666f78902235ccd7207a72fd";
 var s42 = "251f1f42533964f0a12561a42d2667d01dd4ba840f44b7803c4ede8827df6b3c";
