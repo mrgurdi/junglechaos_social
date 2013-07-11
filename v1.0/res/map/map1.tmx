@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="300" height="24" tilewidth="60" tileheight="20">
+ <tileset firstgid="1" name="grass" tilewidth="300" tileheight="20">
+  <image source="../img/grass.png" width="300" height="20"/>
+ </tileset>
+ <tileset firstgid="2" name="enemy_snake" tilewidth="48" tileheight="48">
+  <image source="../img/enemy_snake.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="3" name="bananabunch" tilewidth="32" tileheight="23">
+  <image source="../img/bananabunch.png" width="32" height="23"/>
+ </tileset>
+ <tileset firstgid="4" name="pineapple" tilewidth="32" tileheight="72">
+  <image source="../img/pineapple.png" width="32" height="72"/>
+ </tileset>
+ <tileset firstgid="5" name="statue" tilewidth="52" tileheight="78">
+  <image source="../img/statue.png" width="52" height="78"/>
+ </tileset>
+ <tileset firstgid="6" name="enemy_croc" tilewidth="64" tileheight="38">
+  <image source="../img/enemy_croc.png" width="64" height="38"/>
+ </tileset>
+ <tileset firstgid="7" name="hat" tilewidth="32" tileheight="19">
+  <image source="../img/hat.png" width="32" height="19"/>
+ </tileset>
+ <layer name="Enemies" width="300" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt24uOhCAMQFGyujP//8eTjWtimgLF4VHknsQ4PqOjQi0YAgAAADzZ/gcAmAVlFgDPZBlFmQXAA/neN6Js2sX0K7J8UwYAvmxi/M1+Ys+7nH5Htv32uFqWMaXHI88RmJ313m/1HP5Exj3IOMdqZLwmY7Xcetb1gRFWe6dY5Txjrue+8v+A+XCvros4qp1UDLBfBm2bYFhXrr8rQ2yfs6gRR2n5EO0dqVZ+CXg6LZ9RkuOIrdszT/IEv433nyt3V3/vm4nlGmptG72vb+o4tHnnQDvG2ugPta7SuKFVnEH8glOq/EnVxZjP6NyBjNOIy/v7y7dtwXdONVfuaMu1fKRln6ijdR+V0VrnMAD0UVKPpLbH2rgP1jDyOt/JF3qJmQD0Q9sSvChpH92V+U+TetfQvmmhr3Zf5HdwIn4+WPrchKCXX/K3tu/a41Q9cl1eUt/k2szutKld2ya0Pr6e22ZQh/X715nq/Vjf/tw8j7we1x3UZ8gh/j1Yvhko/a94/gAAAAAAPXwAFTkC7w==
+  </data>
+ </layer>
+ <layer name="Grass" width="300" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt2jsSgzAMBUC4/6UpQxX8Uyyi3ZJKCNl+w/g4AAAAAAAAAHI5G58B+Vm7QEXf9r7enNO7j67Yd1fV4wwAAEbsyhDZsku2eippzewrcv+/fueR3lTvGQDcRWWPHXXQp1IPK70rADGy/DfIUkd12Xs+mqPNFwCznCU8MQ8AIDPx0TMLZgSglpk7rrPnS9R9Zfega9g5u9lFz/kvev/GvgMAABDjAqK3AFI=
+  </data>
+ </layer>
+</map>

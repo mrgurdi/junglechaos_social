@@ -1,0 +1,137 @@
+
+<html>
+	<head>
+		<title>Jungle Chaos</title>
+		<script type="text/javascript">
+			var GAME_WIDTH = 1024;
+			var GAME_HEIGHT = 600;
+			var FB_ID;
+		</script>
+		<script type="text/javascript" src="js/lib/classy/classy.min.js"></script>
+		<script type="text/javascript" src="js/lib/createjs/easeljs-0.6.1.min.js"></script>
+		<script type="text/javascript" src="js/lib/createjs/tweenjs-0.4.1.min.js"></script>
+		<script type="text/javascript" src="js/lib/createjs/soundjs-0.4.1.min.js"></script>
+		<script type="text/javascript" src="js/lib/app42/App42-all-1.5.min.js"></script>
+		<script type="text/javascript" src="js/lib/appwarp/AppWarpClientSDK.js"></script>
+
+		<script type="text/javascript" src="js/game/engine/Game.js"></script>
+		<script type="text/javascript" src="js/game/engine/Scene.js"></script>
+		<script type="text/javascript" src="js/game/engine/ParallaxBG.js"></script>
+		<script type="text/javascript" src="js/game/engine/GUI.js"></script>
+		<script type="text/javascript" src="js/game/engine/Player.js"></script>
+		<script type="text/javascript" src="js/game/engine/World.js"></script>
+
+		<script type="text/javascript" src="js/game/appwarp.js"></script>
+		<script type="text/javascript" src="js/game/app42.js"></script>
+		<script type="text/javascript" src="js/game/multiplayer.js"></script>
+		<script type="text/javascript" src="js/game/singleplayer.js"></script>
+		<script type="text/javascript" src="js/game/main.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</head>
+	<style type="text/css">
+		@font-face {
+		  font-family: 'Lily Script One';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Lily Script One'), local('LilyScriptOne-Regular'), url('res/fonts/LilyScriptOne-Regular.woff') format('woff');
+		}
+
+		body
+		{
+			padding: 0px;
+			margin: 0px;
+			text-align: center;
+			background-image: url("/res/img/paven.png");
+		}		
+	</style>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+		  window.fbAsyncInit = function() {
+		    // init the FB JS SDK
+		    FB.init({
+		      appId      : '529653873751733',                        // App ID from the app dashboard
+		      status     : true,                                 // Check Facebook Login status
+		      xfbml      : true                                  // Look for social plugins on the page
+		    });
+
+		    // Additional initialization code such as adding Event Listeners goes here
+		    function login()
+		    {
+			    FB.login(function(response) {
+				  if (response.authResponse) {
+				    FB.api('/me', function(response) {
+				      FB_ID = response.id;	
+					  loadGame();
+					});
+				  } else {
+				    console.log('User cancelled login or did not fully authorize.');
+				    login();
+				  }
+				});
+		 	}
+
+		 	login();
+		  };
+
+		  // Load the SDK asynchronously
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<canvas id="gameCanvas" width="1024px" height="600px"></canvas>
+		
+		<script type="text/javascript">
+			loadGame = function()
+			{
+				this.Resources = {
+					title: "res/img/title.png",
+					practiceBtn:"res/img/start_btn.png",
+					multiplayerBtn:"res/img/multi_btn.png",
+					helpBtn:"res/img/help_btn.png",
+					creditsBtn:"res/img/credits_btn.png",
+					closeBtn:"res/img/close_btn.png",
+					closeXBtn:"res/img/close_btn_x.png",
+					soundoff:"res/img/sound_off.png",
+					soundon:"res/img/sound_on.png",
+					bg2Image: "res/img/bg2.png",
+					bg3Image: "res/img/bg3.png",
+					grass: "res/img/grass.png",
+					enemy: "res/img/enemy_snake.png",
+					monkey1: "res/img/monkey1.png",
+					monkey2: "res/img/monkey2.png",
+					credits: "res/img/credits.png",
+					help: "res/img/help.png",
+					trophy: "res/img/trophy.png",
+					fb_btn: "res/img/fb.png",
+					fb_share: "res/img/fbshare.png",
+					shephertz: "res/img/shephertz.png",
+					gameover: "res/img/gameover.png",
+					youwon: "res/img/youwon.png",
+					bananabunch: "res/img/bananabunch.png",
+					pineapple: "res/img/pineapple.png",
+					statue: "res/img/statue.png",
+					hat: "res/img/hat.png",
+					enemy_croc: "res/img/enemy_croc.png"
+				};
+				this.sounds = [
+					{src:"res/sounds/jump.wav", id:"jump"},
+					{src:"res/sounds/pickup.wav", id:"pickup"},
+					{src:"res/sounds/power.wav", id:"power"},
+					{src:"res/sounds/WorldNap.ogg", id:"bgm"}
+				];
+
+				var game = new Game("gameCanvas");
+				var loading = new Loader();
+				loading.load(this.Resources,this.sounds, GAME_WIDTH,GAME_HEIGHT,game);
+				game.changeScene(loading);
+			}
+		</script>
+	</body>
+</html>
