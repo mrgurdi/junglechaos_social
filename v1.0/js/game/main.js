@@ -212,7 +212,7 @@ var GameOver = Scene.$extend({
 			      'I made a score of '+ Math.floor(that.score)
 			   ),
 			   link: 'http://apps.facebook.com/junglechaos',
-			   picture: 'http://appwarp.shephertz.com/junglechaos_social/art/face1.png'
+			   picture: 'https://raw.github.com/shephertz/junglechaos_social/master/v0.1/art/face1.png'
 			  },
 			  function(response) {
 			    if (response && response.post_id) {
@@ -276,7 +276,7 @@ var YouWon = Scene.$extend({
 			      'I made a score of '+ Math.floor(that.score)
 			   ),
 			   link: 'http://apps.facebook.com/junglechaos',
-			   picture: 'http://appwarp.shephertz.com/junglechaos_social/art/face1.png'
+			   picture: 'https://raw.github.com/shephertz/junglechaos_social/master/v0.1/art/face1.png'
 			  },
 			  function(response) {
 			    if (response && response.post_id) {
